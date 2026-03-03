@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useReducer } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import heroImage from '../icons_assets/restauranfood.jpg';
 import greekSalad from '../icons_assets/greek salad.jpg';
@@ -32,7 +32,15 @@ const specials = [
   },
 ];
 
-const initialTimes = ['17:00', '18:00', '19:00', '20:00', '21:00', '22:00'];
+const defaultTimes = ['17:00', '18:00', '19:00', '20:00', '21:00', '22:00'];
+
+function initializeTimes() {
+  return defaultTimes;
+}
+
+function updateTimes(state, selectedDate) {
+  return state;
+}
 
 function Home() {
   return (
@@ -106,7 +114,7 @@ function Placeholder({ title, description }) {
 }
 
 function Main() {
-  const [availableTimes, setAvailableTimes] = useState(initialTimes);
+  const [availableTimes, dispatchAvailableTimes] = useReducer(updateTimes, [], initializeTimes);
 
   return (
     <main>
@@ -133,7 +141,10 @@ function Main() {
         <Route
           path="/reservations"
           element={
-            <BookingPage availableTimes={availableTimes} setAvailableTimes={setAvailableTimes} />
+            <BookingPage
+              availableTimes={availableTimes}
+              dispatchAvailableTimes={dispatchAvailableTimes}
+            />
           }
         />
         <Route
