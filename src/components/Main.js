@@ -1,5 +1,5 @@
 import { useReducer } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useNavigate } from 'react-router-dom';
 import heroImage from '../icons_assets/restauranfood.jpg';
 import greekSalad from '../icons_assets/greek salad.jpg';
 import bruschetta from '../icons_assets/bruchetta.svg';
@@ -8,6 +8,7 @@ import ownersA from '../icons_assets/Mario and Adrian A.jpg';
 import ownersB from '../icons_assets/Mario and Adrian b.jpg';
 import BookingPage from './BookingPage';
 import { initializeTimes, updateTimes } from './bookingTimes';
+import ConfirmedBooking from './ConfirmedBooking';
 
 const specials = [
   {
@@ -106,6 +107,18 @@ function Placeholder({ title, description }) {
 
 function Main() {
   const [availableTimes, dispatchAvailableTimes] = useReducer(updateTimes, [], initializeTimes);
+  const navigate = useNavigate();
+
+  const submitForm = (formData) => {
+    const submit =
+      typeof window !== 'undefined' && typeof window.submitAPI === 'function'
+        ? window.submitAPI
+        : () => true;
+    const success = submit(formData);
+    if (success) {
+      navigate('/confirmed');
+    }
+  };
 
   return (
     <main>
@@ -135,9 +148,11 @@ function Main() {
             <BookingPage
               availableTimes={availableTimes}
               dispatchAvailableTimes={dispatchAvailableTimes}
+              submitForm={submitForm}
             />
           }
         />
+        <Route path="/confirmed" element={<ConfirmedBooking />} />
         <Route
           path="/order"
           element={

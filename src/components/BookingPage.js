@@ -1,6 +1,6 @@
 import BookingForm from './BookingForm';
 
-function BookingPage({ availableTimes, dispatchAvailableTimes }) {
+function BookingPage({ availableTimes, dispatchAvailableTimes, submitForm }) {
   return (
     <section className="booking" aria-labelledby="booking-title">
       <h1 id="booking-title">Reserve a Table</h1>
@@ -10,6 +10,7 @@ function BookingPage({ availableTimes, dispatchAvailableTimes }) {
       <BookingForm
         availableTimes={availableTimes}
         dispatchAvailableTimes={dispatchAvailableTimes}
+        submitForm={submitForm}
       />
     </section>
   );
