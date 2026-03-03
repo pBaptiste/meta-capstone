@@ -5,6 +5,7 @@ import bruschetta from '../icons_assets/bruchetta.svg';
 import lemonDessert from '../icons_assets/lemon dessert.jpg';
 import ownersA from '../icons_assets/Mario and Adrian A.jpg';
 import ownersB from '../icons_assets/Mario and Adrian b.jpg';
+import BookingPage from './BookingPage';
 
 const specials = [
   {
@@ -126,12 +127,7 @@ function Main() {
         />
         <Route
           path="/reservations"
-          element={
-            <Placeholder
-              title="Reservations"
-              description="Reserve your table for lunch or dinner in a few quick steps."
-            />
-          }
+          element={<BookingPage />}
         />
         <Route
           path="/order"
