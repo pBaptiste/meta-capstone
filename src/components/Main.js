@@ -7,6 +7,7 @@ import lemonDessert from '../icons_assets/lemon dessert.jpg';
 import ownersA from '../icons_assets/Mario and Adrian A.jpg';
 import ownersB from '../icons_assets/Mario and Adrian b.jpg';
 import BookingPage from './BookingPage';
+import { initializeTimes, updateTimes } from './bookingTimes';
 
 const specials = [
   {
@@ -31,16 +32,6 @@ const specials = [
       'This comes straight from grandma’s recipe book, every last ingredient has been sourced and is as authentic as can be imagined.',
   },
 ];
-
-const defaultTimes = ['17:00', '18:00', '19:00', '20:00', '21:00', '22:00'];
-
-function initializeTimes() {
-  return defaultTimes;
-}
-
-function updateTimes(state, selectedDate) {
-  return state;
-}
 
 function Home() {
   return (
