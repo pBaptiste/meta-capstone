@@ -104,9 +104,23 @@ main {
   object-fit: cover;
 }
 
+@media (min-width: 901px) {
+  .hero-image {
+    align-self: flex-start;
+  }
+
+  .hero-image img {
+    transform: translateY(120px);
+  }
+
+  .specials {
+    --specials-top: 80px;
+  }
+}
+
 .specials {
   max-width: 960px;
-  margin: 0 auto;
+  margin: var(--specials-top, 0) auto 0;
   padding: 0 20px;
 }
 
@@ -285,11 +299,20 @@ footer {
 
   .hero-inner {
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
+    text-align: center;
   }
 
   .hero-image img {
-    max-width: 100%;
+    max-width: 280px;
+  }
+
+  .hero-content p {
+    max-width: 520px;
+  }
+
+  .hero-actions {
+    justify-content: center;
   }
 
   .specials-grid {
