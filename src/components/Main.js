@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import heroImage from '../icons_assets/restauranfood.jpg';
 import greekSalad from '../icons_assets/greek salad.jpg';
@@ -30,6 +31,8 @@ const specials = [
       'This comes straight from grandma’s recipe book, every last ingredient has been sourced and is as authentic as can be imagined.',
   },
 ];
+
+const initialTimes = ['17:00', '18:00', '19:00', '20:00', '21:00', '22:00'];
 
 function Home() {
   return (
@@ -103,6 +106,8 @@ function Placeholder({ title, description }) {
 }
 
 function Main() {
+  const [availableTimes, setAvailableTimes] = useState(initialTimes);
+
   return (
     <main>
       <Routes>
@@ -127,7 +132,9 @@ function Main() {
         />
         <Route
           path="/reservations"
-          element={<BookingPage />}
+          element={
+            <BookingPage availableTimes={availableTimes} setAvailableTimes={setAvailableTimes} />
+          }
         />
         <Route
           path="/order"
