@@ -1,3 +1,4 @@
+import { Routes, Route } from 'react-router-dom';
 import heroImage from '../icons_assets/restauranfood.jpg';
 import greekSalad from '../icons_assets/greek salad.jpg';
 import bruschetta from '../icons_assets/bruchetta.svg';
@@ -29,9 +30,9 @@ const specials = [
   },
 ];
 
-function Main() {
+function Home() {
   return (
-    <main>
+    <>
       <section className="hero" aria-labelledby="hero-title">
         <div className="hero-content">
           <h1 id="hero-title">Little Lemon</h1>
@@ -85,6 +86,70 @@ function Main() {
           <img src={ownersB} alt="Mario and Adrian smiling" />
         </div>
       </section>
+    </>
+  );
+}
+
+function Placeholder({ title, description }) {
+  return (
+    <section className="page" aria-labelledby={`${title}-title`}>
+      <h1 id={`${title}-title`}>{title}</h1>
+      <p>{description}</p>
+    </section>
+  );
+}
+
+function Main() {
+  return (
+    <main>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route
+          path="/about"
+          element={
+            <Placeholder
+              title="About"
+              description="Learn more about the Little Lemon story, our chefs, and what inspires our menu."
+            />
+          }
+        />
+        <Route
+          path="/menu"
+          element={
+            <Placeholder
+              title="Menu"
+              description="Browse our seasonal Mediterranean menu, packed with fresh ingredients and vibrant flavors."
+            />
+          }
+        />
+        <Route
+          path="/reservations"
+          element={
+            <Placeholder
+              title="Reservations"
+              description="Reserve your table for lunch or dinner in a few quick steps."
+            />
+          }
+        />
+        <Route
+          path="/order"
+          element={
+            <Placeholder
+              title="Order Online"
+              description="Order Little Lemon favorites for pickup or delivery."
+            />
+          }
+        />
+        <Route
+          path="/login"
+          element={
+            <Placeholder
+              title="Login"
+              description="Sign in to manage your reservations and saved orders."
+            />
+          }
+        />
+      </Routes>
     </main>
   );
 }
