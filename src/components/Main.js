@@ -34,20 +34,22 @@ function Home() {
   return (
     <>
       <section className="hero" aria-labelledby="hero-title">
-        <div className="hero-content">
-          <h1 id="hero-title">Little Lemon</h1>
-          <h2>Chicago</h2>
-          <p>
-            We are a family owned Mediterranean restaurant, focused on traditional recipes served
-            with a modern twist.
-          </p>
-          <div className="hero-actions">
-            <a href="/reservations">Reserve a Table</a>
-            <a href="/order">Order Online</a>
+        <div className="hero-inner">
+          <div className="hero-content">
+            <h1 id="hero-title">Little Lemon</h1>
+            <h2>Chicago</h2>
+            <p>
+              We are a family owned Mediterranean restaurant, focused on traditional recipes served
+              with a modern twist.
+            </p>
+            <div className="hero-actions">
+              <a href="/reservations">Reserve a Table</a>
+              <a href="/order">Order Online</a>
+            </div>
           </div>
-        </div>
-        <div className="hero-image">
-          <img src={heroImage} alt="Freshly prepared bruschetta" />
+          <div className="hero-image">
+            <img src={heroImage} alt="Freshly prepared bruschetta" />
+          </div>
         </div>
       </section>
 
