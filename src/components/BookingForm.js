@@ -22,50 +22,66 @@ function BookingForm({ availableTimes, dispatchAvailableTimes, submitForm }) {
     dispatchAvailableTimes(nextDate);
   };
 
+  const isFormValid = Boolean(date) && Boolean(time) && guests >= 1 && guests <= 10;
+
   return (
-    <form onSubmit={handleSubmit} aria-label="Table reservation form">
-      <label htmlFor="res-date">Choose date</label>
-      <input
-        id="res-date"
-        type="date"
-        value={date}
-        onChange={handleDateChange}
-      />
+    <form className="booking-form" onSubmit={handleSubmit} aria-label="Table reservation form">
+      <div className="form-field">
+        <label htmlFor="res-date">Choose date</label>
+        <input
+          id="res-date"
+          type="date"
+          value={date}
+          onChange={handleDateChange}
+          required
+        />
+      </div>
 
-      <label htmlFor="res-time">Choose time</label>
-      <select
-        id="res-time"
-        value={time}
-        onChange={(event) => setTime(event.target.value)}
-      >
-        {availableTimes.map((slot) => (
-          <option key={slot} value={slot}>
-            {slot}
-          </option>
-        ))}
-      </select>
+      <div className="form-field">
+        <label htmlFor="res-time">Choose time</label>
+        <select
+          id="res-time"
+          value={time}
+          onChange={(event) => setTime(event.target.value)}
+          required
+        >
+          {availableTimes.map((slot) => (
+            <option key={slot} value={slot}>
+              {slot}
+            </option>
+          ))}
+        </select>
+      </div>
 
-      <label htmlFor="guests">Number of guests</label>
-      <input
-        id="guests"
-        type="number"
-        min="1"
-        max="10"
-        value={guests}
-        onChange={(event) => setGuests(Number(event.target.value))}
-      />
+      <div className="form-field">
+        <label htmlFor="guests">Number of guests</label>
+        <input
+          id="guests"
+          type="number"
+          min="1"
+          max="10"
+          value={guests}
+          onChange={(event) => setGuests(Number(event.target.value))}
+          required
+        />
+      </div>
 
-      <label htmlFor="occasion">Occasion</label>
-      <select
-        id="occasion"
-        value={occasion}
-        onChange={(event) => setOccasion(event.target.value)}
-      >
-        <option>Birthday</option>
-        <option>Anniversary</option>
-      </select>
+      <div className="form-field">
+        <label htmlFor="occasion">Occasion</label>
+        <select
+          id="occasion"
+          value={occasion}
+          onChange={(event) => setOccasion(event.target.value)}
+          required
+        >
+          <option>Birthday</option>
+          <option>Anniversary</option>
+        </select>
+      </div>
 
-      <button type="submit">Submit reservation</button>
+      <button type="submit" disabled={!isFormValid}>
+        Submit reservation
+      </button>
     </form>
   );
 }
