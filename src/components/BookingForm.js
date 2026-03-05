@@ -25,7 +25,7 @@ function BookingForm({ availableTimes, dispatchAvailableTimes, submitForm }) {
   const isFormValid = Boolean(date) && Boolean(time) && guests >= 1 && guests <= 10;
 
   return (
-    <form className="booking-form" onSubmit={handleSubmit} aria-label="Table reservation form">
+    <form className="booking-form" onSubmit={handleSubmit} aria-label="On Click">
       <div className="form-field">
         <label htmlFor="res-date">Choose date</label>
         <input
@@ -33,6 +33,7 @@ function BookingForm({ availableTimes, dispatchAvailableTimes, submitForm }) {
           type="date"
           value={date}
           onChange={handleDateChange}
+          aria-label="On Click"
           required
         />
       </div>
@@ -43,6 +44,7 @@ function BookingForm({ availableTimes, dispatchAvailableTimes, submitForm }) {
           id="res-time"
           value={time}
           onChange={(event) => setTime(event.target.value)}
+          aria-label="On Click"
           required
         >
           {availableTimes.map((slot) => (
@@ -62,6 +64,7 @@ function BookingForm({ availableTimes, dispatchAvailableTimes, submitForm }) {
           max="10"
           value={guests}
           onChange={(event) => setGuests(Number(event.target.value))}
+          aria-label="On Click"
           required
         />
       </div>
@@ -72,6 +75,7 @@ function BookingForm({ availableTimes, dispatchAvailableTimes, submitForm }) {
           id="occasion"
           value={occasion}
           onChange={(event) => setOccasion(event.target.value)}
+          aria-label="On Click"
           required
         >
           <option>Birthday</option>
@@ -79,7 +83,7 @@ function BookingForm({ availableTimes, dispatchAvailableTimes, submitForm }) {
         </select>
       </div>
 
-      <button type="submit" disabled={!isFormValid}>
+      <button type="submit" disabled={!isFormValid} aria-label="On Click">
         Submit reservation
       </button>
     </form>
