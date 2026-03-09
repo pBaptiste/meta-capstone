@@ -1,4 +1,4 @@
-import { useReducer } from 'react';
+import { useReducer, useState } from 'react';
 import { Routes, Route, useNavigate } from 'react-router-dom';
 import heroImage from '../icons_assets/restauranfood.jpg';
 import greekSalad from '../icons_assets/greek salad.jpg';
@@ -107,16 +107,23 @@ function Placeholder({ title, description }) {
 
 function Main() {
   const [availableTimes, dispatchAvailableTimes] = useReducer(updateTimes, [], initializeTimes);
+  const [lastBooking, setLastBooking] = useState(null);
+  const [submitError, setSubmitError] = useState('');
   const navigate = useNavigate();
 
   const submitForm = (formData) => {
+    // Use the API submit hook when present; default to success for local testing.
     const submit =
       typeof window !== 'undefined' && typeof window.submitAPI === 'function'
         ? window.submitAPI
         : () => true;
     const success = submit(formData);
     if (success) {
+      setSubmitError('');
+      setLastBooking(formData);
       navigate('/confirmed');
+    } else {
+      setSubmitError('We could not complete your reservation. Please try again.');
     }
   };
 
@@ -149,10 +156,11 @@ function Main() {
               availableTimes={availableTimes}
               dispatchAvailableTimes={dispatchAvailableTimes}
               submitForm={submitForm}
+              submitError={submitError}
             />
           }
         />
-        <Route path="/confirmed" element={<ConfirmedBooking />} />
+        <Route path="/confirmed" element={<ConfirmedBooking booking={lastBooking} />} />
         <Route
           path="/order"
           element={

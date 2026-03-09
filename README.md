@@ -1,6 +1,28 @@
 # meta-capstone
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Little Lemon booking app built with React and Create React App.
+
+## Setup
+
+```bash
+npm install
+npm start
+```
+
+Open [http://localhost:3000](http://localhost:3000).
+
+## Tests
+
+```bash
+npm test
+```
+
+## Booking API
+
+The booking API is loaded from `public/api.js`. The app uses:
+
+- `fetchAPI(date)` to populate available times
+- `submitAPI(formData)` to submit reservations
 
 ## Available Scripts
 

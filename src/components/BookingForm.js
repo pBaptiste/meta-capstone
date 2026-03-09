@@ -1,5 +1,13 @@
 import { useState } from 'react';
 
+const formatTime = (time) => {
+  const [hourString, minute] = time.split(':');
+  const hour = Number(hourString);
+  const period = hour >= 12 ? 'PM' : 'AM';
+  const standardHour = ((hour + 11) % 12) + 1;
+  return `${standardHour}:${minute} ${period}`;
+};
+
 function BookingForm({ availableTimes, dispatchAvailableTimes, submitForm }) {
   const [date, setDate] = useState('');
   const [time, setTime] = useState(availableTimes[0] || '');
@@ -22,7 +30,8 @@ function BookingForm({ availableTimes, dispatchAvailableTimes, submitForm }) {
     dispatchAvailableTimes(nextDate);
   };
 
-  const isFormValid = Boolean(date) && Boolean(time) && guests >= 1 && guests <= 10;
+  const hasTimes = availableTimes.length > 0;
+  const isFormValid = Boolean(date) && Boolean(time) && guests >= 1 && guests <= 10 && hasTimes;
 
   return (
     <form className="booking-form" onSubmit={handleSubmit} aria-label="On Click">
@@ -46,13 +55,19 @@ function BookingForm({ availableTimes, dispatchAvailableTimes, submitForm }) {
           onChange={(event) => setTime(event.target.value)}
           aria-label="On Click"
           required
+          disabled={!hasTimes}
         >
-          {availableTimes.map((slot) => (
-            <option key={slot} value={slot}>
-              {slot}
-            </option>
-          ))}
+        {availableTimes.map((slot) => (
+          <option key={slot} value={slot}>
+            {formatTime(slot)}
+          </option>
+        ))}
         </select>
+        {!hasTimes ? (
+          <span className="field-hint" role="status">
+            No times available for this date. Please select another date.
+          </span>
+        ) : null}
       </div>
 
       <div className="form-field">
