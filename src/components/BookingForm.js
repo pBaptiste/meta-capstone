@@ -34,7 +34,7 @@ function BookingForm({ availableTimes, dispatchAvailableTimes, submitForm }) {
   const isFormValid = Boolean(date) && Boolean(time) && guests >= 1 && guests <= 10 && hasTimes;
 
   return (
-    <form className="booking-form" onSubmit={handleSubmit} aria-label="On Click">
+    <form className="booking-form" onSubmit={handleSubmit} aria-label="Table reservation form">
       <div className="form-field">
         <label htmlFor="res-date">Choose date</label>
         <input
@@ -42,7 +42,7 @@ function BookingForm({ availableTimes, dispatchAvailableTimes, submitForm }) {
           type="date"
           value={date}
           onChange={handleDateChange}
-          aria-label="On Click"
+          aria-label="Reservation date"
           required
         />
       </div>
@@ -53,7 +53,7 @@ function BookingForm({ availableTimes, dispatchAvailableTimes, submitForm }) {
           id="res-time"
           value={time}
           onChange={(event) => setTime(event.target.value)}
-          aria-label="On Click"
+          aria-label="Reservation time"
           required
           disabled={!hasTimes}
         >
@@ -79,7 +79,7 @@ function BookingForm({ availableTimes, dispatchAvailableTimes, submitForm }) {
           max="10"
           value={guests}
           onChange={(event) => setGuests(Number(event.target.value))}
-          aria-label="On Click"
+          aria-label="Number of guests"
           required
         />
       </div>
@@ -90,7 +90,7 @@ function BookingForm({ availableTimes, dispatchAvailableTimes, submitForm }) {
           id="occasion"
           value={occasion}
           onChange={(event) => setOccasion(event.target.value)}
-          aria-label="On Click"
+          aria-label="Occasion"
           required
         >
           <option>Birthday</option>
@@ -98,7 +98,7 @@ function BookingForm({ availableTimes, dispatchAvailableTimes, submitForm }) {
         </select>
       </div>
 
-      <button type="submit" disabled={!isFormValid} aria-label="On Click">
+      <button type="submit" disabled={!isFormValid} aria-label="Submit reservation">
         Submit reservation
       </button>
     </form>
